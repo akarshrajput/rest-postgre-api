@@ -1,8 +1,18 @@
 const express = require("express");
+const studentRoutes = require("./src/student/routes");
 const port = 3000;
 const app = express();
 
-app.get("/");
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.status(400).json({
+    status: "success",
+    message: "Hello world",
+  });
+});
+
+app.use("/api/v1/student", studentRoutes);
 
 app.listen(port, () => {
   console.log("App listening");
